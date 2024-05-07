@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adicionar Url</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+  <script>
+    function addUrl() {
+      // $('#pages').html("")
+
+      $.post('/addUrl', { newUrl: $('#newUrl').val() }).then((res) => {
+        console.log(res);
+        $('#res').html(`
+          <strong>${res.success ? 'URL adicionada com sucesso' : 'Erro ao adicionar URL'}</strong>
+        `);
+
+        // res.forEach((page) => {
+        //   $('#pages').append(`
+        //     <tr >
+        //       <td><span> ${page.url} </span></td>
+        //       <td><span> ${page.title} </span></td>
+        //       <td><span> ${page.quote} </span></td>
+        //     </tr>
+        //     `);
+        // });
+      });
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <form>
+    <div="form-row">
+      <div>
+        <label>Url: </label>
+        <input type="text" id="newUrl" name="newUrl">
+      </div>
+      </div>
+      <button onclick="addUrl()" type="button">Send URL</button>
+  </form>
+
+  <p id="res"></p>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pesquisar URL</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+  <script>
+    function searchUrl() {
+      $.get('/searchByUrl', { searchUrl: 'AAAaaAAa' }).then((res) => {
+        console.log(res);
+
+        res.forEach((page) => {
+          $('#pages').append(`
+            <tr >
+              <td><span> ${page.url} </span></td>
+              <td><span> ${page.title} </span></td>
+              <td><span> ${page.quote} </span></td>
+            </tr>
+            `);
+        });
+      });
+    }
+  </script>
+</head>
+
+<body>
+  <form method="get">
+    <div="form-row">
+      <div>
+        <label>Search Terms: </label>
+        <input type="text" name="search-url" />
+      </div>
+      </div>
+      <button type="button" onclick="searchUrl()">Pesquisar</button>
+  </form>
+
+  <div>
+    <table id="pages">
+      <thead>
+        <tr>
+          <th>URL</th>
+          <th>Titulo</th>
+          <th>Quote</th>
+        </tr>
+      </thead>
+      <tbody id="pages"></tbody>
+    </table>
+  </div>
+</body>
+
+</html>

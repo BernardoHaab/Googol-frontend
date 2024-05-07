@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesquisar por Termos</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+  <script>
+    function searchByTerms() {
+      $('#pages').html("")
+
+      $.get('/searchByTerms', { terms: $('#terms').val(), page: $('#page').val() }).then((res) => {
+        console.log(res);
+
+        res.forEach((page) => {
+          $('#pages').append(`
+            <tr >
+              <td><span> ${page.url} </span></td>
+              <td><span> ${page.title} </span></td>
+              <td><span> ${page.quote} </span></td>
+            </tr>
+            `);
+        });
+      });
+    }
+  </script>
+
+</head>
+
+<body>
+  <form>
+    <div="form-row">
+      <div>
+        <label>Search Terms: </label>
+        <input type="text" id="terms" name="terms" />
+        <input type="number" id="page" name="page" />
+      </div>
+      </div>
+      <button onclick="searchByTerms()" type="button">Pesquisar</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th> URL </th>
+        <th> Titulo </th>
+        <th> Quote </th>
+      </tr>
+    </thead>
+    <tbody id="pages">
+      <!-- <tr th:if="${pages.empty}">
+        <td colspan="2"> No Books Available </td>
+      </tr>
+      <tr th:each="page : ${pages}">
+        <td><span th:text="${page.url}"> Url </span></td>
+        <td><span th:text="${page.title}"> Titulo </span></td>
+        <td><span th:text="${page.quote}"> Quote </span></td>
+      </tr> -->
+    </tbody>
+  </table>
+
+</body>
+
+</html>
