@@ -22,6 +22,11 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
+    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -60,11 +65,25 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.webjars/webjars-locator -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>webjars-locator</artifactId>
 			<version>0.52</version>
-		</dependency>
+		</dependency> -->
+
+    <!-- https://mvnrepository.com/artifact/org.webjars/webjars-locator-core -->
+    <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>webjars-locator-core</artifactId>
+        <version>0.52</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.webjars/sockjs-client -->
+    <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>sockjs-client</artifactId>
+        <version>1.5.1</version>
+    </dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
 		<dependency>

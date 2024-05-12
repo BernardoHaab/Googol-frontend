@@ -1,6 +1,7 @@
 package com.Googol.frontend;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,6 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -144,14 +147,32 @@ public class GatewayController {
     res.getWriter().flush();
   }
 
+  @GetMapping("/admin")
+  public String adminPage(Model model) {
+
+    try {
+      RMI gateway = getGatewayInstance();
+      subscribeToGateway(gateway);
+    } catch (Exception e) {
+      System.out.println("Erro ao buscar gateway!");
+      e.printStackTrace();
+      return "redirect:/erro";
+    }
+
+    return "admin";
+  }
+
   private static RMI getGatewayInstance() throws Exception {
     RMI gateway = (RMI) LocateRegistry.getRegistry(gatewayHost, gatewayPort).lookup(gatewayName);
+    return gateway;
+  }
+
+  private void subscribeToGateway(RMI gateway) throws RemoteException {
     System.out.println("GATEWAY");
     RealTimeContent realTimeContent = new RealTimeContent();
     System.out.println("REALTIMECONTENT");
     gateway.subscribe((ClientCB) realTimeContent);
     System.out.println("SUBSCRIBED");
-    return gateway;
   }
 
 }
