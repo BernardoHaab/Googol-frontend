@@ -9,10 +9,12 @@
 
   <script>
     function searchUrl() {
-      $.get('/searchByUrl', { searchUrl: 'AAAaaAAa' }).then((res) => {
+      $.get('/searchByUrl', { searchUrl: $('#search-url').val() }).then((res) => {
         console.log(res);
 
-        res.forEach((page) => {
+        const resJson = JSON.parse(res);
+
+        resJson.data.forEach((page) => {
           $('#pages').append(`
             <tr >
               <td><span> ${page.url} </span></td>
@@ -31,7 +33,7 @@
     <div="form-row">
       <div>
         <label>Search Terms: </label>
-        <input type="text" name="search-url" />
+        <input type="text" name="search-url" id="search-url" />
       </div>
       </div>
       <button type="button" onclick="searchUrl()">Pesquisar</button>

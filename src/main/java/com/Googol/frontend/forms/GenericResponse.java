@@ -1,13 +1,22 @@
 package com.Googol.frontend.forms;
 
-public class GenericResponse {
+import java.io.Serializable;
+
+public class GenericResponse<T> implements Serializable {
   private boolean success;
-  private int codeError;
+  private int statusCode;
   private String messageError;
+  private T data;
 
   public GenericResponse() {
-    success = false;
-    codeError = -1;
+    success = true;
+    statusCode = 200;
+  }
+
+  public GenericResponse(T data) {
+    success = true;
+    statusCode = 200;
+    this.data = data;
   }
 
   public boolean isSuccess() {
@@ -18,12 +27,12 @@ public class GenericResponse {
     this.success = success;
   }
 
-  public int getCodeError() {
-    return codeError;
+  public int getStatusCode() {
+    return statusCode;
   }
 
-  public void setCodeError(int codeError) {
-    this.codeError = codeError;
+  public void setStatusCode(int statusCode) {
+    this.statusCode = statusCode;
   }
 
   public String getMessageError() {
@@ -32,6 +41,14 @@ public class GenericResponse {
 
   public void setMessageError(String messageError) {
     this.messageError = messageError;
+  }
+
+  public T getData() {
+    return data;
+  }
+
+  public void setData(T data) {
+    this.data = data;
   }
 
 }

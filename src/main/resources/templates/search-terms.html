@@ -14,7 +14,9 @@
       $.get('/searchByTerms', { terms: $('#terms').val(), page: $('#page').val() }).then((res) => {
         console.log(res);
 
-        res.forEach((page) => {
+        const resJson = JSON.parse(res);
+
+        resJson.data.forEach((page) => {
           $('#pages').append(`
             <tr >
               <td><span> ${page.url} </span></td>

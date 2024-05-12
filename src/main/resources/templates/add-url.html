@@ -14,8 +14,11 @@
 
       $.post('/addUrl', { newUrl: $('#newUrl').val() }).then((res) => {
         console.log(res);
+
+        const resJson = JSON.parse(res);
+
         $('#res').html(`
-          <strong>${res.success ? 'URL adicionada com sucesso' : 'Erro ao adicionar URL'}</strong>
+          <strong>${resJson.success ? 'URL adicionada com sucesso' : 'Erro ao adicionar URL'}</strong>
         `);
 
         // res.forEach((page) => {
