@@ -25,11 +25,23 @@
               <td><span> ${storie.position} </span></td>
               <td><span> ${storie.title} </span></td>
               <td><span> ${storie.url} </span></td>
+              <td><span><button onclick="addUrl('${storie.url}')">Indexar</button></span></td>
             </tr>
             `);
         });
       });
     }
+
+    function addUrl(url) {
+      $.post('/addUrl', { newUrl: url }).then((res) => {
+        const resJson = JSON.parse(res);
+
+        $('#res').html(`
+          <strong>${resJson.success ? `${url} adicionada com sucesso` : `Erro ao adicionar ${url}`}</strong>
+        `);
+      });
+    }
+
   </script>
 
 </head>
