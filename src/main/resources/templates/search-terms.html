@@ -9,24 +9,45 @@
 
   <script>
     function searchByTerms() {
-      $('#pages').html("")
+      $('#pages').html("Carregando...")
 
       $.get('/searchByTerms', { terms: $('#terms').val(), page: $('#page').val() }).then((res) => {
-        console.log(res);
-
+        $('#pages').html("")
         const resJson = JSON.parse(res);
 
-        resJson.data.forEach((page) => {
+        resJson.data.forEach((page, id) => {
           $('#pages').append(`
             <tr >
+              <td><span> ${id} </span></td>
               <td><span> ${page.url} </span></td>
               <td><span> ${page.title} </span></td>
               <td><span> ${page.quote} </span></td>
+              <td id="page-${id}" ><button type="button" onclick="createShorUrl('${page.url}', ${id})">Criar</button></td>
             </tr>
             `);
         });
       });
     }
+
+    function createShorUrl(longUrl, id) {
+      try {
+        $.get('/shortUrl', { longUrl }).then((res) => {
+          const resJson = JSON.parse(res);
+
+          if (!resJson.success) {
+            alert('Erro ao criar URL curta, tente novamente mais tarde.');
+            return;
+          }
+
+          $(`#page-${id}`).html(`<span> ${resJson.data.tiny_url} </span>`);
+
+        })
+      } catch (error) {
+        console.log(error);
+        alert('Erro ao criar URL curta');
+      }
+    }
+
   </script>
 
 </head>
@@ -46,9 +67,11 @@
   <table>
     <thead>
       <tr>
+        <th> N° </th>
         <th> URL </th>
         <th> Titulo </th>
         <th> Quote </th>
+        <th> Short Url </th>
       </tr>
     </thead>
     <tbody id="pages">

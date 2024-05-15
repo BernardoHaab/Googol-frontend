@@ -44,7 +44,7 @@ public class ShortUrl {
           .url("https://api.tinyurl.com/create")
           .method("POST", body)
           .addHeader("Content-Type", "application/json")
-          .addHeader("Authorization", "Bearer V1V3ASWkfSHFwNRddUYlRJxa8WjEvcFkh9Ny9LXl4RYNkb8SkugG8qE53PtW")
+          .addHeader("Authorization", "Bearer " + apiKey)
           .build();
       Response response = client.newCall(request).execute();
 
