@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top stories - HackerNews</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+  <script>
+    function searchTopStories(event) {
+      event.preventDefault();
+      $('#topStories').html("Carregado...")
+
+      $.get('/getTopHackerNew', { terms: $('#terms').val(), size: $('#size').val() }).then((res) => {
+        $('#topStories').html("")
+        console.log(res);
+
+        const resJson = JSON.parse(res);
+
+        resJson.data.forEach((storie) => {
+          $('#topStories').append(`
+            <tr >
+              <td><span> ${storie.position} </span></td>
+              <td><span> ${storie.title} </span></td>
+              <td><span> ${storie.url} </span></td>
+            </tr>
+            `);
+        });
+      });
+    }
+  </script>
+
+</head>
+
+<body>
+
+  <h1>Top stories - HackerNews</h1>
+
+  <form onsubmit="searchTopStories(event)">
+    <label for="terms">Termos:</label>
+    <input type="text" name="terms" id="terms">
+    <label for="size">Limite para a busca no HackeNews:</label>
+    <input type="number" name="size" id="size">
+    <button type="submit">Pesquisar</button>
+  </form>
+
+  <table id="pages">
+    <thead>
+      <tr>
+        <th>Posição</th>
+        <th>Título</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody id="topStories">
+    </tbody>
+  </table>
+
+</body>
+
+</html>
