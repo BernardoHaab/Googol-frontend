@@ -45,17 +45,17 @@
 			<scope>test</scope>
 		</dependency>
 
-    	<dependency>
-        	<groupId>org.webjars</groupId>
-        	<artifactId>jquery</artifactId>
-        	<version>3.6.4</version>
-    	</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.6.4</version>
+		</dependency>
 
-    	<dependency>
-        	<groupId>com.google.code.gson</groupId>
-        	<artifactId>gson</artifactId>
-        	<version>2.10.1</version>
-    	</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.10.1</version>
+		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.webjars/stomp-websocket -->
 		<dependency>
@@ -99,8 +99,22 @@
         <version>1.17.2</version>
     </dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.theokanning.openai-gpt3-java/service -->
+		<dependency>
+			<groupId>com.theokanning.openai-gpt3-java</groupId>
+			<artifactId>service</artifactId>
+			<version>0.18.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>6.1.6</version>
+		</dependency>
 
 	</dependencies>
+
 
 	<build>
 		<plugins>
