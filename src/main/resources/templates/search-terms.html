@@ -5,6 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pesquisar por Termos</title>
+
+  <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/global.css" rel="stylesheet">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
   <script>
@@ -53,30 +57,43 @@
 </head>
 
 <body>
+  <nav>
+    <a href="/add-url">Adicionar URL</a>
+    <a href="/search-terms">Pesquisar por Termos</a>
+    <a href="/search-url">Pesquisar por Url</a>
+    <a href="/top-HackerNews">Pesquisar no HackerNews</a>
+    <a href="/admin">Admin</a>
+  </nav>
+
+  <h1>Pesquisar Por Termos</h1>
+
   <form>
-    <div="form-row">
-      <div>
-        <label>Search Terms: </label>
-        <input type="text" id="terms" name="terms" />
-        <input type="number" id="page" name="page" />
-      </div>
-      </div>
-      <button onclick="searchByTerms()" type="button">Pesquisar</button>
+    <div>
+      <label>Search Terms: </label>
+      <input type="text" id="terms" name="terms" />
+    </div>
+    <div>
+      <label for="page">Página:</label>
+      <input type="number" id="page" name="page" />
+    </div>
+    <button onclick="searchByTerms()" type="button">Pesquisar</button>
   </form>
 
-  <table>
-    <thead>
-      <tr>
-        <th> N° </th>
-        <th> URL </th>
-        <th> Titulo </th>
-        <th> Quote </th>
-        <th> Short Url </th>
-      </tr>
-    </thead>
-    <tbody id="pages">
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th> N° </th>
+          <th> URL </th>
+          <th> Titulo </th>
+          <th> Quote </th>
+          <th> Short Url </th>
+        </tr>
+      </thead>
+      <tbody id="pages">
+      </tbody>
+    </table>
+  </div>
 
 </body>
 

@@ -7,6 +7,9 @@
   <title>Pesquisar URL</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+  <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/global.css" rel="stylesheet">
+
   <script>
     function searchUrl() {
       $.get('/searchByUrl', { searchUrl: $('#search-url').val() }).then((res) => {
@@ -29,17 +32,23 @@
 </head>
 
 <body>
+  <nav>
+    <a href="/add-url">Adicionar URL</a>
+    <a href="/search-terms">Pesquisar por Termos</a>
+    <a href="/search-url">Pesquisar por Url</a>
+    <a href="/top-HackerNews">Pesquisar no HackerNews</a>
+    <a href="/admin">Admin</a>
+  </nav>
+
   <form method="get">
-    <div="form-row">
-      <div>
-        <label>Search Terms: </label>
-        <input type="text" name="search-url" id="search-url" />
-      </div>
-      </div>
-      <button type="button" onclick="searchUrl()">Pesquisar</button>
+    <div>
+      <label>Search Terms: </label>
+      <input type="text" name="search-url" id="search-url" />
+    </div>
+    <button type="button" onclick="searchUrl()">Pesquisar</button>
   </form>
 
-  <div>
+  <div class="table-container">
     <table id="pages">
       <thead>
         <tr>

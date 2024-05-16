@@ -121,13 +121,7 @@ public class GatewayController {
       System.out.println("Buscou gateway!");
       pages.addAll(gateway.pesquisaPrincipal(termsSet, page));
       System.out.println("Buscou pagina");
-      System.out.println("Pages: " + pages.size());
-      // PageDTO p = new PageDTO(1, "https://www.aaaa.com", "EEEE", "Searchengine");
-      // PageDTO p1 = new PageDTO(1, "https://www.temp.com", "Teste", "frase");
-      // if (terms != null && !terms.isEmpty()) {
-      // pages.add(p);
-      // pages.add(p1);
-      // }
+      System.out.println("Quantidade de elementos: " + pages.size());
 
     } catch (Exception e) {
       System.out.println("Erro ao buscar termos!");

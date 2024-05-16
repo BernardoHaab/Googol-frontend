@@ -8,6 +8,9 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+  <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/global.css" rel="stylesheet">
+
   <script>
     function searchTopStories(event) {
       event.preventDefault();
@@ -47,28 +50,41 @@
 </head>
 
 <body>
+  <nav>
+    <a href="/add-url">Adicionar URL</a>
+    <a href="/search-terms">Pesquisar por Termos</a>
+    <a href="/search-url">Pesquisar por Url</a>
+    <a href="/top-HackerNews">Pesquisar no HackerNews</a>
+    <a href="/admin">Admin</a>
+  </nav>
 
   <h1>Top stories - HackerNews</h1>
 
   <form onsubmit="searchTopStories(event)">
-    <label for="terms">Termos:</label>
-    <input type="text" name="terms" id="terms">
-    <label for="size">Limite para a busca no HackeNews:</label>
-    <input type="number" name="size" id="size">
+    <div>
+      <label for="terms">Termos:</label>
+      <input type="text" name="terms" id="terms">
+    </div>
+    <div>
+      <label for="size">Limite para a busca no HackeNews:</label>
+      <input type="number" name="size" id="size">
+    </div>
     <button type="submit">Pesquisar</button>
   </form>
 
-  <table id="pages">
-    <thead>
-      <tr>
-        <th>Posição</th>
-        <th>Título</th>
-        <th>URL</th>
-      </tr>
-    </thead>
-    <tbody id="topStories">
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table id="pages">
+      <thead>
+        <tr>
+          <th>Posição</th>
+          <th>Título</th>
+          <th>URL</th>
+        </tr>
+      </thead>
+      <tbody id="topStories">
+      </tbody>
+    </table>
+  </div>
 
 </body>
 

@@ -6,10 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adicionar Url</title>
 
+  <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/global.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
   <script>
     function addUrl() {
+      $('#res').html("Carregando...")
+
       $.post('/addUrl', { newUrl: $('#newUrl').val() }).then((res) => {
         console.log(res);
 
@@ -26,14 +30,22 @@
 
 <body>
 
+  <nav>
+    <a href="/add-url">Adicionar URL</a>
+    <a href="/search-terms">Pesquisar por Termos</a>
+    <a href="/search-url">Pesquisar por Url</a>
+    <a href="/top-HackerNews">Pesquisar no HackerNews</a>
+    <a href="/admin">Admin</a>
+  </nav>
+
+  <h1>Adicionar Url</h1>
+
   <form>
-    <div="form-row">
-      <div>
-        <label>Url: </label>
-        <input type="text" id="newUrl" name="newUrl">
-      </div>
-      </div>
-      <button onclick="addUrl()" type="button">Send URL</button>
+    <div>
+      <label>Url: </label>
+      <input type="text" id="newUrl" name="newUrl">
+    </div>
+    <button onclick="addUrl()" type="button">Send URL</button>
   </form>
 
   <p id="res"></p>
